@@ -36,19 +36,19 @@ namespace Assets.Scripts
                 {"Property2", "There"}
             };
             // Serialize body as a Json string
-            string RequestBodyString = JsonConvert.SerializeObject(requestBody);
+            string requestBodyString = JsonConvert.SerializeObject(requestBody);
             // Convert Json body string into a byte array
-            byte[] RequestBodyData = System.Text.Encoding.UTF8.GetBytes(RequestBodyString);
+            byte[] requestBodyData = System.Text.Encoding.UTF8.GetBytes(requestBodyString);
 
             // Create new UnityWebRequest, pass on our url and body as a byte array
-            UnityWebRequest webRequest = UnityWebRequest.Put(url, RequestBodyData);
+            UnityWebRequest webRequest = UnityWebRequest.Put(url, requestBodyData);
             // Specify that our method is of type 'patch'
             webRequest.method = "PATCH";
 
             // Set request headers i.e. conent type, authorization etc
             webRequest.SetRequestHeader("Content-Type", "application/json");
             webRequest.SetRequestHeader("Authorization", "Bearer ABC-123");
-            webRequest.SetRequestHeader("Content-length", (RequestBodyData.Length.ToString()));
+            webRequest.SetRequestHeader("Content-length", (requestBodyData.Length.ToString()));
 
             // Set the default download buffer
             webRequest.downloadHandler = new DownloadHandlerBuffer();
@@ -68,7 +68,7 @@ namespace Assets.Scripts
                 if (webRequest.isDone)
                 {
                     // Invoke success action
-                    onDeleteRequestSuccess?.Invoke("Delete Request Completed");
+                    onDeleteRequestSuccess?.Invoke("Patch Request Completed");
                 }
             }
         }
